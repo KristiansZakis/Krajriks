@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import ttk
-from PIL import Image
 
 window = Tk()
 window.geometry("800x600")
@@ -175,9 +174,9 @@ def izņemt_logs():
 
 
 #galvenās pogas
-papildināt = PhotoImage(file = "C:\images\papildināt.png")
-izņemt = PhotoImage(file = "C:\images\izņemt.png")
-pieprasīt = PhotoImage(file = "C:\images\pieprasīt.png")
+papildināt = PhotoImage(file = "Krajriks\images\papildināt.png")
+izņemt = PhotoImage(file = "Krajriks\images\izņemt.png")
+pieprasīt = PhotoImage(file = "Krajriks\images\pieprasīt.png")
 
 poga_papildināt = Button(window, image = papildināt, command = papildināt_logs, borderwidth = 0, background = 'white')
 poga_papildināt.place(x = 50, y = 120)
