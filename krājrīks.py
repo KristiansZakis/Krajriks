@@ -174,9 +174,9 @@ def izņemt_logs():
 
 
 #galvenās pogas
-papildināt = PhotoImage(file = "Krajriks\images\papildināt.png")
-izņemt = PhotoImage(file = "Krajriks\images\izņemt.png")
-pieprasīt = PhotoImage(file = "Krajriks\images\pieprasīt.png")
+papildināt = PhotoImage(file = "C:\images\papildināt.png")#Samainīt ceļu uz jauno
+izņemt = PhotoImage(file = "C:\images\izņemt.png")#Samainīt ceļu uz jauno
+pieprasīt = PhotoImage(file = "C:\images\pieprasīt.png")#Samainīt ceļu uz jauno
 
 poga_papildināt = Button(window, image = papildināt, command = papildināt_logs, borderwidth = 0, background = 'white')
 poga_papildināt.place(x = 50, y = 120)
