@@ -5,9 +5,7 @@ window = Tk()
 window.geometry("800x600")
 window.title("Krājrīks")
 window.configure(background = 'white')
-switch_image = PhotoImage(file = "images\switch.png")
-poga_switch = Button(window, image = switch_image, command = None, borderwidth = 0, background = 'white')
-poga_switch.place(x = 470, y = 400)
+
 
 
 #mainīgie
@@ -19,7 +17,6 @@ papildinājuma_summa_skaitlis = 0
 pieprasīt_summa_skaitlis = 0
 izņēmuma_summa_skaitlis = 0
 
-#dažas funkcijas
 def plus_viens_papild():
     global papildinājuma_summa_skaitlis
     global galvenais_konts
@@ -27,6 +24,40 @@ def plus_viens_papild():
     papildinājuma_summa.config(text=str(papildinājuma_summa_skaitlis))
     galvenais_konts -= 1
     teksts_atlikums.config(text=str(galvenais_konts))
+
+# switch poga
+        
+is_on = True
+ 
+my_label = Label(window, 
+    text = "The Switch Is On!", 
+    fg = "green", 
+    font = ("Helvetica", 32))
+ 
+my_label.pack(pady = 20)
+ 
+def switch():
+    global is_on
+     
+    if is_on:
+        on_button.config(image = off)
+        my_label.config(text = "The Switch is Off", 
+                        fg = "grey")
+        is_on = False
+    else:
+       
+        on_button.config(image = on)
+        my_label.config(text = "The Switch is On", fg = "green")
+        is_on = True
+ 
+on = PhotoImage(file = "on.png")
+off = PhotoImage(file = "off.png")
+ 
+on_button = Button(window, image = on, bd = 0,
+                   command = switch)
+on_button.pack(pady = 50)
+
+# dažas funkcijas
 
 def mīnus_viens_papild():
     global papildinājuma_summa_skaitlis
@@ -187,7 +218,7 @@ def papildināt_logs():
     Button(logs_papildināt, text="+20", font="Inter 10", command=lambda: add_amount(20)).place(x=350, y=300)
     Button(logs_papildināt, text="Viss", font="Inter 10", command=reset_amount).place(x=450, y=300)
 
-    nosūtīt_image = PhotoImage(file = "images\nosūtīt.png")
+    nosūtīt_image = PhotoImage(file = "images/nosūtīt.png")
     nosūtīt_poga = Button(logs_papildināt,text = 'nosūtīt',command = nosūtīt)
     nosūtīt_poga.place(x = 220, y = 370)
 
@@ -264,9 +295,9 @@ def pieprasīt_logs():
     poga_pieprasīt.place(x=220, y=370)
 
 #galvenās pogas
-papildināt = PhotoImage(file = "images\papildināt.png")#Samainīt ceļu uz jauno
-izņemt = PhotoImage(file = "images\izņemt.png")#Samainīt ceļu uz jauno
-pieprasīt = PhotoImage(file = "images\pieprasīt.png")#Samainīt ceļu uz jauno
+papildināt = PhotoImage(file = "images/papildināt.png")#Samainīt ceļu uz jauno
+izņemt = PhotoImage(file = "images/izņemt.png")#Samainīt ceļu uz jauno
+pieprasīt = PhotoImage(file = "images/pieprasīt.png")#Samainīt ceļu uz jauno
 
 poga_papildināt = Button(window, image = papildināt, command = papildināt_logs, borderwidth = 0, background = 'white')
 poga_papildināt.place(x = 50, y = 120)
