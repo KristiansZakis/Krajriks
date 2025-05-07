@@ -28,44 +28,36 @@ def plus_viens_papild():
 # switch poga
         
 is_on = True
- 
-my_label = Label(window, 
-    text = "The Switch Is On!", 
-    fg = "green", 
-    font = ("Helvetica", 32))
- 
-my_label.pack(pady = 20)
- 
 def switch():
     global is_on
      
     if is_on:
         on_button.config(image = off)
-        my_label.config(text = "The Switch is Off", 
-                        fg = "grey")
         is_on = False
     else:
        
         on_button.config(image = on)
-        my_label.config(text = "The Switch is On", fg = "green")
         is_on = True
  
-on = PhotoImage(file = "on.png")
-off = PhotoImage(file = "off.png")
- 
-on_button = Button(window, image = on, bd = 0,
-                   command = switch)
-on_button.pack(pady = 50)
+on = PhotoImage(file="images\on.png")
+off = PhotoImage(file="images\off.png")
+
+on = on.subsample(3, 3)
+off = off.subsample(3, 3)
+
+on_button = Button(window, image = on, bd = 0,command = switch)
+on_button.place(x=500,y=400)
 
 # dažas funkcijas
 
 def mīnus_viens_papild():
     global papildinājuma_summa_skaitlis
     global galvenais_konts
-    papildinājuma_summa_skaitlis -= 1
-    papildinājuma_summa.config(text=str(papildinājuma_summa_skaitlis))
-    galvenais_konts += 1
-    teksts_atlikums.config(text=str(galvenais_konts))
+    if papildinājuma_summa_skaitlis > 0:
+        papildinājuma_summa_skaitlis -= 1
+        galvenais_konts += 1
+        update_display()
+
 
 
 
@@ -101,9 +93,11 @@ def reset_amount():
 
 def nosūtīt():
     global konta_nauda
-    global galvenais_konts
+    global papildinājuma_summa_skaitlis
     konta_nauda += papildinājuma_summa_skaitlis
+    papildinājuma_summa_skaitlis = 0
     update_display()
+
 
 def update_display():
     papildinājuma_summa.config(text=f"{papildinājuma_summa_skaitlis}")
