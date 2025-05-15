@@ -6,8 +6,6 @@ window.geometry("800x600")
 window.title("Krājrīks")
 window.configure(background = 'white')
 
-
-
 #mainīgie
 konta_nauda = 250
 uzkrātie_procenti = float(0.00)
@@ -28,7 +26,7 @@ def plus_viens_papild():
 # switch poga
         
 is_on = True
-def switch():
+def toggle():
     global is_on
      
     if is_on:
@@ -39,13 +37,13 @@ def switch():
         on_button.config(image = on)
         is_on = True
  
-on = PhotoImage(file="images\on.png")
-off = PhotoImage(file="images\off.png")
+on = PhotoImage(file="c:\images\on.png")
+off = PhotoImage(file="c:\images\off.png")
 
 on = on.subsample(3, 3)
 off = off.subsample(3, 3)
 
-on_button = Button(window, image = on, bd = 0,command = switch)
+on_button = Button(window, image = on, bd = 0,command = toggle)
 on_button.place(x=500,y=400)
 
 # dažas funkcijas
@@ -57,9 +55,6 @@ def mīnus_viens_papild():
         papildinājuma_summa_skaitlis -= 1
         galvenais_konts += 1
         update_display()
-
-
-
 
 def plus_viens_piepras():
     global pieprasīt_summa_skaitlis
@@ -139,29 +134,6 @@ def izņemt_funkcija():
         konta_nauda -= izņēmuma_summa_skaitlis
         update_display_2()
 
-def add_piepras_amount(value):
-    global pieprasīt_summa_skaitlis
-    global galvenais_konts
-    pieprasīt_summa_skaitlis += value
-    galvenais_konts -= value
-    update_display_3()
-
-def reset_piepras_amount():
-    global pieprasīt_summa_skaitlis
-    global galvenais_konts
-    pieprasīt_summa_skaitlis += galvenais_konts
-    galvenais_konts = 0
-    update_display_3()
-
-def pieprasīt_naudu():
-    global konta_nauda
-    global pieprasīt_summa_skaitlis
-    if pieprasīt_summa_skaitlis > 0:
-        konta_nauda += pieprasīt_summa_skaitlis
-        pieprasīt_summa_skaitlis = 0
-        update_display_3()
-    
-
 def update_display_2():
      izņēmuma_summa.config(text=f"{izņēmuma_summa_skaitlis}")
      konta_summa.config(text=f"{konta_nauda}")
@@ -182,7 +154,7 @@ def papildināt_logs():
     logs_papildināt.geometry('500x500')
     logs_papildināt.configure(background = 'white')
 
-    papildināt_logs_teksts_1 = Label(logs_papildināt, text = 'Papildināt', font = 'Inter 24', bg = 'white', fg = 'darkorange')
+    papildināt_logs_teksts_1 = Label(logs_papildināt, text = 'Papildināt', font = 'Inter 24', bg = 'white', fg = '#FF0004')
     papildināt_logs_teksts_1.place(x = 30, y = 20)
 
     konta_numurs = Label(logs_papildināt, text = 'Mans konts', font = 'Inter 14', bg = 'white')
@@ -212,9 +184,8 @@ def papildināt_logs():
     Button(logs_papildināt, text="+20", font="Inter 10", command=lambda: add_amount(20)).place(x=350, y=300)
     Button(logs_papildināt, text="Viss", font="Inter 10", command=reset_amount).place(x=450, y=300)
 
-    nosūtīt_image = PhotoImage(file = "images/nosūtīt.png")
-    nosūtīt_poga = Button(logs_papildināt,text = 'nosūtīt',command = nosūtīt)
-    nosūtīt_poga.place(x = 220, y = 370)
+    nosūtīt_poga = Button(logs_papildināt,text = 'nosūtīt',font = 'Inter 30', bg = '#8AC1F0',command = nosūtīt)
+    nosūtīt_poga.place(x = 170, y = 370)
 
 #Logs izņemt
 
@@ -226,7 +197,7 @@ def izņemt_logs():
     logs_izņemt.geometry('500x500')
     logs_izņemt.configure(background = 'white')
 
-    izņemt_logs_teksts_1 = Label(logs_izņemt, text = 'Izņemt', font = 'Inter 24', bg = 'white', fg = 'darkorange')
+    izņemt_logs_teksts_1 = Label(logs_izņemt, text = 'Izņemt', font = 'Inter 24', bg = 'white', fg = '#FF0004')
     izņemt_logs_teksts_1.place(x = 30, y = 20)
 
     izņēmuma_summa = Label(logs_izņemt, text=str(izņēmuma_summa_skaitlis), font='Inter 32', bg='white')
@@ -244,8 +215,8 @@ def izņemt_logs():
     Button(logs_izņemt, text="+20", font="Inter 10", command=lambda: pievienot_vērtību(20)).place(x=350, y=300)
     Button(logs_izņemt, text="Viss", font="Inter 10", command=noņemt_vertību).place(x=450, y=300)
 
-    nosūtīt_poga = Button(logs_izņemt,text = 'Iznemt',command = izņemt_funkcija)
-    nosūtīt_poga.place(x = 220, y = 370)
+    nosūtīt_poga = Button(logs_izņemt,text = 'Iznemt',font = 'Inter 30', bg = '#8AC1F0',command = izņemt_funkcija)
+    nosūtīt_poga.place(x = 170, y = 370)
 
 def pieprasīt_logs():
     global pieprasīt_summa
@@ -255,43 +226,40 @@ def pieprasīt_logs():
     logs_pieprasīt.geometry('500x500')
     logs_pieprasīt.configure(background='white')
 
-    logs_teksts = Label(logs_pieprasīt, text='Pieprasīt', font='Inter 24', bg='white', fg='darkorange')
+    logs_teksts = Label(logs_pieprasīt, text='Pieprasīt', font='Inter 24', bg='white', fg='#FF0004')
     logs_teksts.place(x=30, y=20)
 
+    no_konta = Label(logs_pieprasīt, text='Konts', font='Inter 10', bg='white', fg='#ABABAB')
+    no_konta.place(x=35, y=80)
+
+    līnija_1 = Label(logs_pieprasīt, text = "______________________________________", font = 'Inter 15' , bg = 'white', fg = 'black')
+    līnija_1.place(x  = 30, y = 110)
+
     konta_numurs = Label(logs_pieprasīt, text='Mans konts', font='Inter 14', bg='white')
-    konta_numurs.place(x=40, y=80)
+    konta_numurs.place(x=40, y=100)
 
-    no_konta = Label(logs_pieprasīt, text='No konta', font='Inter 8', bg='white', fg='#ABABAB')
-    no_konta.place(x=35, y=60)
+    līnija_2 = Label(logs_pieprasīt, text = "______________________________________", font = 'Inter 15' , bg = 'white', fg = 'black')
+    līnija_2.place(x = 30, y = 190)
 
-    pieprasīt_summa = Label(logs_pieprasīt, text=str(pieprasīt_summa_skaitlis), font='Inter 32', bg='white')
-    pieprasīt_summa.place(x=200, y=180)
+    teksts_summa = Label(logs_pieprasīt, text = 'Summa', font = 'Inter 20' , bg = 'white', fg = "#B2AFAF")
+    teksts_summa.place(x = 40, y = 170)
 
-    poga_plus_1 = Button(logs_pieprasīt, text='+', command=plus_viens_piepras)
-    poga_plus_1.place(x=300, y=200)
+    teksts_EUR = Label(logs_pieprasīt, text = "EUR", bg = 'white', fg = 'black', font = 'Inter 20')
+    teksts_EUR.place(x = 380, y = 170)
 
-    poga_mīnus_1 = Button(logs_pieprasīt, text='-', command=mīnus_viens_piepras)
-    poga_mīnus_1.place(x=180, y=200)
+    līnija_3 = Label(logs_pieprasīt, text = "______________________________________", font = 'Inter 15' , bg = 'white', fg = 'black')
+    līnija_3.place(x = 30, y = 280)
 
-    teksts_atlikums = Label(logs_pieprasīt, text=str(galvenais_konts), font='Inter 8', bg='white', fg='#ABABAB')
-    teksts_atlikums.place(x=220, y=240)
+    teksts_apraksts = Label(logs_pieprasīt, text = "Apraksts", bg = 'white', fg = '#E2D8D8', font = 'Inter 20')
+    teksts_apraksts.place(x = 40, y  = 260)
 
-    teksts_EUR = Label(logs_pieprasīt, text='EUR', font='Inter 8', bg='white', fg='#ABABAB')
-    teksts_EUR.place(x=260, y=240)
-
-    Button(logs_pieprasīt, text="+2", font="Inter 10", command=lambda: add_piepras_amount(2)).place(x=50, y=300)
-    Button(logs_pieprasīt, text="+5", font="Inter 10", command=lambda: add_piepras_amount(5)).place(x=150, y=300)
-    Button(logs_pieprasīt, text="+10", font="Inter 10", command=lambda: add_piepras_amount(10)).place(x=250, y=300)
-    Button(logs_pieprasīt, text="+20", font="Inter 10", command=lambda: add_piepras_amount(20)).place(x=350, y=300)
-    Button(logs_pieprasīt, text="Viss", font="Inter 10", command=reset_piepras_amount).place(x=450, y=300)
-
-    poga_pieprasīt = Button(logs_pieprasīt, text='Nosūtīt', command=pieprasīt_naudu)
-    poga_pieprasīt.place(x=220, y=370)
+    pieprasījums = Button(logs_pieprasīt, text = 'Nosūtīt pieprasījumu',font = 'Inter 30', bg = '#8AC1F0', command = print(1))
+    pieprasījums.place(x = 50, y = 400) 
 
 #galvenās pogas
-papildināt = PhotoImage(file = "images/papildināt.png")#Samainīt ceļu uz jauno
-izņemt = PhotoImage(file = "images/izņemt.png")#Samainīt ceļu uz jauno
-pieprasīt = PhotoImage(file = "images/pieprasīt.png")#Samainīt ceļu uz jauno
+papildināt = PhotoImage(file = "c:\images\papildināt.png")
+izņemt = PhotoImage(file = "c:\images\izņemt.png")
+pieprasīt = PhotoImage(file = "c:\images\pieprasīt.png")
 
 poga_papildināt = Button(window, image = papildināt, command = papildināt_logs, borderwidth = 0, background = 'white')
 poga_papildināt.place(x = 50, y = 120)
@@ -299,7 +267,7 @@ poga_papildināt.place(x = 50, y = 120)
 poga_izņmet = Button(window, image = izņemt, command = izņemt_logs, borderwidth = 0, background = 'white')
 poga_izņmet.place(x = 310, y = 120)
 
-poga_pieprasīt = Button(window, image = pieprasīt, command = pieprasīt_logs, borderwidth = 0, background = 'white')#Aizvieto ar jauna loga funkciju
+poga_pieprasīt = Button(window, image = pieprasīt, command = pieprasīt_logs, borderwidth = 0, background = 'white')
 poga_pieprasīt.place(x = 570, y = 120)
 
 #pārējais teksts
@@ -315,7 +283,7 @@ teksts_procentu_likme.place(x = 50, y = 300)
 procenti_procentu_likme = Label(window, text = f"{procentu_likme} %", font = 'Inter 16', background = 'white')
 procenti_procentu_likme.place(x = 670, y = 300)
 
-uzkrāšanās_metodes = Label(window, text = 'Uzkrāšanas metodes', font = 'Inter 18 bold', background = 'white', fg = 'darkorange')
+uzkrāšanās_metodes = Label(window, text = 'Uzkrāšanas metodes', font = 'Inter 18 bold', background = 'white', fg = '#FF0004')
 uzkrāšanās_metodes.place(x = 50, y = 370)
 
 apaļošana_teksts = Label(window, text = 'Apaļošana', font = 'Inter 17 bold', background = 'white', fg = 'black')
